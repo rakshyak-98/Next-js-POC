@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPost } from "@/app/lib/util";
+import { getPost } from "@/lib/util";
 
 export default async function Home() {
 	const posts = await getPost();

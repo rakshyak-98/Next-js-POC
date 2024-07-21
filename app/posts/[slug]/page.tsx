@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/app/lib/util";
+import { getPostBySlug } from "@/lib/util";
 
 type Params = {
 	slug: string;
