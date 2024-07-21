@@ -1,12 +1,5 @@
-'use client'
 import Link from "next/link";
 import { getPost } from "@/app/lib/util";
-
-type Post = {
-	id: number;
-	title: string;
-	slug: string;
-};
 
 export default async function Home() {
 	const posts = await getPost();

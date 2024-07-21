@@ -5,7 +5,7 @@ type Post = {
 	content: string;
 };
 export async function getPost(): Promise<Post[]> {
-	const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+	const res = await fetch("http://localhost:3000/api/posts");
 	const posts: Post[] = await res.json();
 	return posts.map(post => {
         post.slug = post.title.replaceAll(" ", "-");
