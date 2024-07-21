@@ -1,0 +1,33 @@
+'use client'
+import Link from "next/link";
+import { getPost } from "@/app/lib/util";
+
+type Post = {
+	id: number;
+	title: string;
+	slug: string;
+};
+
+export default async function Home() {
+	const posts = await getPost();
+	return (
+		<main className="p-4">
+			<h1 className="text-2xl font-bold mb-4">My Blog</h1>
+			<ul>
+				{posts.map((post) => {
+					return (
+						<li>
+							<Link
+								href={`/posts/${post.slug}`}
+								className="text-blue-500 hover:underline"
+							>
+								{post.title}
+							</Link>
+						</li>
+					);
+				})}
+			</ul>
+		</main>
+	);
+}
+
