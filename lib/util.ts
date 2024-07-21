@@ -5,6 +5,15 @@ type Post = {
 	slug: string;
 	content: string;
 };
+
+type Comment = {
+	id: number;
+	name: string;
+	content: string;
+	author: string;
+	body: string;
+}
+
 export async function getPost(): Promise<Post[]> {
 	const res = await fetch("http://localhost:3000/api/posts");
 	if (res.ok === false) {
@@ -20,7 +29,20 @@ export async function getPost(): Promise<Post[]> {
 	});
 }
 
+export async function getComment(slug: string): Promise<Comment[]> {
+	const res = await fetch(`http://localhost:3000/api/comments?postSlug=${slug}`);
+	if (res.ok === false) {
+		throw new AppError("Failed to fetch comments", {
+			url: "http://localhost:3000/api/comments",
+			functionName: "getComment",
+		});
+	}
+	const comments: Comment[] = await res.json();
+	return comments;
+}
+
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
-	return (await getPost()).find((p) => p.slug === slug);
+	const post = (await getPost()).find((p) => p.slug === slug);
+	return post
 }
 

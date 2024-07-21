@@ -9,7 +9,7 @@ export default async function Home() {
 			<ul>
 				{posts.map((post) => {
 					return (
-						<li>
+						<li key={post.id}>
 							<Link
 								href={`/posts/${post.slug}`}
 								className="text-blue-500 hover:underline"
